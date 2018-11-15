@@ -1,3 +1,9 @@
+<!-- default file list -->
+*Files to look at*:
+
+* **[MainWindow.xaml](./CS/MapControl_SearchPanel/MainWindow.xaml) (VB: [MainWindow.xaml](./VB/MapControl_SearchPanel/MainWindow.xaml))**
+* [MainWindow.xaml.cs](./CS/MapControl_SearchPanel/MainWindow.xaml.cs) (VB: [MainWindow.xaml](./VB/MapControl_SearchPanel/MainWindow.xaml))
+<!-- default file list end -->
 # How to manually process search using a custom search panel
 
 
