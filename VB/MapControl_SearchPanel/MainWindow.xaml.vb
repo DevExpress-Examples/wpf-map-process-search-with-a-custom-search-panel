@@ -1,4 +1,5 @@
-﻿Imports DevExpress.Xpf.Map
+﻿Imports Microsoft.VisualBasic
+Imports DevExpress.Xpf.Map
 Imports System
 Imports System.Collections.Generic
 Imports System.Globalization
@@ -7,113 +8,113 @@ Imports System.Windows
 Imports System.Windows.Controls
 
 Namespace MapControl_SearchPanel
-    Partial Public Class MainWindow
-        Inherits Window
+	Partial Public Class MainWindow
+		Inherits Window
 
-        Public Sub New()
-            InitializeComponent()
-        End Sub
+		Public Sub New()
+			InitializeComponent()
+		End Sub
 
-        #Region "#CustomSearch"
-        Private Sub bSearch_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
-            tbSearchResult.Text = ""
-            searchProvider.Search(tbLocation.Text)
-        End Sub
-        #End Region ' #CustomSearch
+		#Region "#CustomSearch"
+		Private Sub bSearch_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
+			tbSearchResult.Text = ""
+			searchProvider.Search(tbLocation.Text)
+		End Sub
+		#End Region ' #CustomSearch
 
-        Private Sub ValidationError(ByVal sender As Object, ByVal e As ValidationErrorEventArgs)
-            If e.Action = ValidationErrorEventAction.Added Then
-                MessageBox.Show(e.Error.ErrorContent.ToString())
-            End If
-        End Sub
-        #Region "#SearchCompletedEventHandler"
-        Private Sub searchProvider_SearchCompleted(ByVal sender As Object, ByVal e As BingSearchCompletedEventArgs)
-            If e.Cancelled Then
-                Return
-            End If
-            If e.RequestResult.ResultCode <> RequestResultCode.Success Then
-                Return
-            End If
+		Private Sub ValidationError(ByVal sender As Object, ByVal e As ValidationErrorEventArgs)
+			If e.Action = ValidationErrorEventAction.Added Then
+				MessageBox.Show(e.Error.ErrorContent.ToString())
+			End If
+		End Sub
+		#Region "#SearchCompletedEventHandler"
+		Private Sub searchProvider_SearchCompleted(ByVal sender As Object, ByVal e As BingSearchCompletedEventArgs)
+			If e.Cancelled Then
+				Return
+			End If
+			If e.RequestResult.ResultCode <> RequestResultCode.Success Then
+				Return
+			End If
 
-            Dim sb As New StringBuilder()
+			Dim sb As New StringBuilder()
 
-            Dim requestResult As SearchRequestResult = e.RequestResult
-            sb.Append(String.Format("Result Code: {0}" & vbLf, requestResult.ResultCode))
-            If String.IsNullOrEmpty(requestResult.FaultReason) Then
-                sb.Append(String.Format("Fault Reason: (none)" & vbLf, requestResult.FaultReason))
-            Else
-                sb.Append(String.Format("Fault Reason: {0}" & vbLf, requestResult.FaultReason))
-            End If
-            sb.Append(String.Format("Search Location: {0}" & vbLf, requestResult.Keyword))
-            sb.Append(String.Format("Estimated Matches: {0}" & vbLf, requestResult.EstimatedMatches))
-            sb.Append(String.Format("SearchResults:" & vbLf & "{0}", ProcessLocationList(requestResult.SearchResults)))
+			Dim requestResult As SearchRequestResult = e.RequestResult
+			sb.Append(String.Format("Result Code: {0}" & vbLf, requestResult.ResultCode))
+			If String.IsNullOrEmpty(requestResult.FaultReason) Then
+				sb.Append(String.Format("Fault Reason: (none)" & vbLf, requestResult.FaultReason))
+			Else
+				sb.Append(String.Format("Fault Reason: {0}" & vbLf, requestResult.FaultReason))
+			End If
+			sb.Append(String.Format("Search Location: {0}" & vbLf, requestResult.Keyword))
+			sb.Append(String.Format("Estimated Matches: {0}" & vbLf, requestResult.EstimatedMatches))
+			sb.Append(String.Format("SearchResults:" & vbLf & "{0}", ProcessLocationList(requestResult.SearchResults)))
 
-            tbSearchResult.Text = sb.ToString()
+			tbSearchResult.Text = sb.ToString()
 
-        End Sub
+		End Sub
 
-        Private Function ProcessLocationList(ByVal results As List(Of LocationInformation)) As String
-            If results Is Nothing Then
-                Return ""
-            End If
+		Private Function ProcessLocationList(ByVal results As List(Of LocationInformation)) As String
+			If results Is Nothing Then
+				Return ""
+			End If
 
-            Dim sb As New StringBuilder()
-            For i As Integer = 0 To results.Count - 1
-                sb.Append(String.Format("{0}) {1}", i + 1, ProcessLocationInformation(results(i))))
-            Next i
-            Return sb.ToString()
-        End Function
-        #End Region ' #SearchCompletedEventHandler
+			Dim sb As New StringBuilder()
+			For i As Integer = 0 To results.Count - 1
+				sb.Append(String.Format("{0}) {1}", i + 1, ProcessLocationInformation(results(i))))
+			Next i
+			Return sb.ToString()
+		End Function
+		#End Region ' #SearchCompletedEventHandler
 
-        #Region "#ProcessLocationInformation"
-        Private Function ProcessLocationInformation(ByVal info As LocationInformation) As String
-            If info Is Nothing Then
-                Return ""
-            End If
+		#Region "#ProcessLocationInformation"
+		Private Function ProcessLocationInformation(ByVal info As LocationInformation) As String
+			If info Is Nothing Then
+				Return ""
+			End If
 
-            Dim sb As New StringBuilder()
+			Dim sb As New StringBuilder()
 
-            sb.Append(String.Format("{0}" & vbLf, info.DisplayName))
-            sb.Append(String.Format(vbTab & "Adress: {0}" & vbLf, info.Address))
-            sb.Append(String.Format(vbTab & "Location: {0}" & vbLf, info.Location))
-            Return sb.ToString()
-        End Function
-        #End Region ' #ProcessLocationInformation
-    End Class
+			sb.Append(String.Format("{0}" & vbLf, info.DisplayName))
+			sb.Append(String.Format(vbTab & "Adress: {0}" & vbLf, info.Address))
+			sb.Append(String.Format(vbTab & "Location: {0}" & vbLf, info.Location))
+			Return sb.ToString()
+		End Function
+		#End Region ' #ProcessLocationInformation
+	End Class
 
-    Friend Class NonNegativeIntValidationRule
-        Inherits ValidationRule
+	Friend Class NonNegativeIntValidationRule
+		Inherits ValidationRule
 
+'INSTANT VB NOTE: The field min was renamed since Visual Basic does not allow fields to have the same name as other class members:
+		Private min_Conflict As Integer = 0
+'INSTANT VB NOTE: The field max was renamed since Visual Basic does not allow fields to have the same name as other class members:
+		Private max_Conflict As Integer = Integer.MaxValue
 
-        Private min_Renamed As Integer = 0
+		Public ReadOnly Property Min() As Integer
+			Get
+				Return min_Conflict
+			End Get
+		End Property
+		Public Property Max() As Integer
+			Get
+				Return max_Conflict
+			End Get
+			Set(ByVal value As Integer)
+				If value <> max_Conflict Then
+					max_Conflict = value
+				End If
+			End Set
+		End Property
 
-        Private max_Renamed As Integer = Integer.MaxValue
-
-        Public ReadOnly Property Min() As Integer
-            Get
-                Return min_Renamed
-            End Get
-        End Property
-        Public Property Max() As Integer
-            Get
-                Return max_Renamed
-            End Get
-            Set(ByVal value As Integer)
-                If value <> max_Renamed Then
-                    max_Renamed = value
-                End If
-            End Set
-        End Property
-
-        Public Overrides Function Validate(ByVal value As Object, ByVal cultureInfo As CultureInfo) As ValidationResult
-            Dim i As Integer = Nothing
-            If Not Integer.TryParse(TryCast(value, String), NumberStyles.Integer,cultureInfo, i) Then
-                Return New ValidationResult(False, "Input value should be an integer.")
-            End If
-            If (i > max_Renamed) OrElse (i < min_Renamed) Then
-                Return New ValidationResult(False, String.Format("Input value should be larger than or equals to 0 and les than or equals to {0}", max_Renamed))
-            End If
-            Return New ValidationResult(True, Nothing)
-        End Function
-    End Class
+		Public Overrides Function Validate(ByVal value As Object, ByVal cultureInfo As CultureInfo) As ValidationResult
+			Dim i As Integer = Nothing
+			If Not Integer.TryParse(TryCast(value, String), NumberStyles.Integer,cultureInfo, i) Then
+				Return New ValidationResult(False, "Input value should be an integer.")
+			End If
+			If (i > max_Conflict) OrElse (i < min_Conflict) Then
+				Return New ValidationResult(False, String.Format("Input value should be larger than or equals to 0 and les than or equals to {0}", max_Conflict))
+			End If
+			Return New ValidationResult(True, Nothing)
+		End Function
+	End Class
 End Namespace
