@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MapControl_SearchPanel", "MapControl_SearchPanel\MapControl_SearchPanel.vbproj", "{37880035-B812-4241-96A7-5CA63B763117}"
+# Visual Studio 16
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MapControl_SearchPanel", "MapControl_SearchPanel\MapControl_SearchPanel.Net5.vbproj", "{37880035-B812-4241-96A7-5CA63B763117}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
