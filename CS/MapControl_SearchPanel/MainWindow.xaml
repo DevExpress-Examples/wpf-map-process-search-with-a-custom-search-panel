@@ -7,7 +7,7 @@
         Title="MainWindow" Height="600" Width="800">
 
     <Window.Resources>
-        <sys:String x:Key="bingKey">YOUR BING KEY HERE!</sys:String>
+        <sys:String x:Key="azureKey">YOUR BING KEY HERE!</sys:String>
         <!--region #DistanceUnits-->
         <ObjectDataProvider x:Key="distanceUnits"
             ObjectType="{x:Type sys:Enum}"  MethodName="GetValues">
@@ -24,26 +24,18 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <dxm:MapControl Grid.Column="0">
-            <dxm:ImageTilesLayer>
-                <dxm:ImageTilesLayer.DataProvider>
-                    <dxm:BingMapDataProvider BingKey="{Binding Source={StaticResource bingKey}}"/>
-                </dxm:ImageTilesLayer.DataProvider>
-            </dxm:ImageTilesLayer>
+            <dxm:ImageLayer>
+                <dxm:ImageLayer.DataProvider>
+                    <dxm:AzureMapDataProvider AzureKey="{Binding Source={StaticResource azureKey}}"/>
+                </dxm:ImageLayer.DataProvider>
+            </dxm:ImageLayer>
             <dxm:InformationLayer >
                 <!--region #SearchProvider-->
                 <dxm:InformationLayer.DataProvider>
-                    <dxm:BingSearchDataProvider x:Name="searchProvider" 
-                                                ShowSearchPanel="False"
-                                                BingKey="{Binding Source={StaticResource bingKey}}"
-                                                SearchCompleted="searchProvider_SearchCompleted">
-                        <dxm:BingSearchDataProvider.SearchOptions>
-                            <dxm:BingSearchOptions x:Name="options"
-                                                   AutocorrectQuery="{Binding ElementName=cbAutocorrect, Path=IsChecked}"
-                                                   DistanceUnit="{Binding ElementName=lbDistanceUnits, Path=SelectedValue}"
-                                                   ResultsCount="{Binding ElementName=tbCount, Path=Value}">
-                            </dxm:BingSearchOptions>
-                        </dxm:BingSearchDataProvider.SearchOptions>
-                    </dxm:BingSearchDataProvider>
+                    <dxm:AzureSearchDataProvider x:Name="searchProvider"
+                                                 AzureKey="{Binding Source={StaticResource azureKey}}"
+                                                 SearchCompleted="searchProvider_SearchCompleted">
+                    </dxm:AzureSearchDataProvider>
                 </dxm:InformationLayer.DataProvider>
                 <!--endregion #SearchProvider-->
             </dxm:InformationLayer>

@@ -25,8 +25,8 @@ Namespace MapControl_SearchPanel
             If e.Action = ValidationErrorEventAction.Added Then Call MessageBox.Show(e.Error.ErrorContent.ToString())
         End Sub
 
-'#Region "#SearchCompletedEventHandler"
-        Private Sub searchProvider_SearchCompleted(ByVal sender As Object, ByVal e As BingSearchCompletedEventArgs)
+        '#Region "#SearchCompletedEventHandler"
+        Private Sub searchProvider_SearchCompleted(ByVal sender As Object, ByVal e As AzureSearchCompletedEventArgs)
             If e.Cancelled Then Return
             If e.RequestResult.ResultCode <> RequestResultCode.Success Then Return
             Dim sb As StringBuilder = New StringBuilder()

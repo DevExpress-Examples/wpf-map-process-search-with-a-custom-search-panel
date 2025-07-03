@@ -24,7 +24,7 @@ namespace MapControl_SearchPanel {
                 MessageBox.Show(e.Error.ErrorContent.ToString());
         }
         #region #SearchCompletedEventHandler
-        private void searchProvider_SearchCompleted(object sender, BingSearchCompletedEventArgs e) {
+        private void searchProvider_SearchCompleted(object sender, AzureSearchCompletedEventArgs e) {
             if (e.Cancelled) return;
             if (e.RequestResult.ResultCode != RequestResultCode.Success) return;
 
