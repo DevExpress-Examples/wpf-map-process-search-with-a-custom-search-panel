@@ -24,7 +24,7 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <dxm:MapControl Grid.Column="0">
+        <dxm:MapControl Grid.Column="0" ShowSearchPanel="False">
             <dxm:ImageLayer>
                 <dxm:ImageLayer.DataProvider>
                     <dxm:AzureMapDataProvider AzureKey="{Binding Source={StaticResource azureKey}}"/>
