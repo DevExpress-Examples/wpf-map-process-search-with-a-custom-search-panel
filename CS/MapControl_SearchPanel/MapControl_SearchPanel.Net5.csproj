@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net10.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
     <RootNamespace>MapControl_SearchPanel</RootNamespace>
     <AssemblyName>MapControl_SearchPanel</AssemblyName>
@@ -29,20 +29,20 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DevExpress.Data" Version="25.1.3" />
-    <PackageReference Include="DevExpress.Data.Desktop" Version="25.1.3" />
-    <PackageReference Include="DevExpress.Map.Core" Version="25.1.3" />
-    <PackageReference Include="DevExpress.Mvvm" Version="25.1.3" />
-    <PackageReference Include="DevExpress.Office.Core" Version="25.1.3" />
-    <PackageReference Include="DevExpress.Pdf.Core" Version="25.1.3" />
-    <PackageReference Include="DevExpress.Printing.Core" Version="25.1.3" />
-    <PackageReference Include="DevExpress.RichEdit.Core" Version="25.1.3" />
-    <PackageReference Include="DevExpress.RichEdit.Export" Version="25.1.3" />
-    <PackageReference Include="DevExpress.Wpf.Core" Version="25.1.3" />
-    <PackageReference Include="DevExpress.Wpf.LayoutControl" Version="25.1.3" />
-    <PackageReference Include="DevExpress.Wpf.Map" Version="25.1.3" />
-    <PackageReference Include="DevExpress.Wpf.Printing" Version="25.1.3" />
-    <PackageReference Include="DevExpress.Wpf.Reporting" Version="25.1.3" />
-    <PackageReference Include="DevExpress.Wpf.Themes.All" Version="25.1.3" />
+    <PackageReference Include="DevExpress.Data" Version="26.1.5" />
+    <PackageReference Include="DevExpress.Data.Desktop" Version="26.1.5" />
+    <PackageReference Include="DevExpress.Map.Core" Version="26.1.5" />
+    <PackageReference Include="DevExpress.Mvvm" Version="26.1.5" />
+    <PackageReference Include="DevExpress.Office.Core" Version="26.1.5" />
+    <PackageReference Include="DevExpress.Pdf.Core" Version="26.1.5" />
+    <PackageReference Include="DevExpress.Printing.Core" Version="26.1.5" />
+    <PackageReference Include="DevExpress.RichEdit.Core" Version="26.1.5" />
+    <PackageReference Include="DevExpress.RichEdit.Export" Version="26.1.5" />
+    <PackageReference Include="DevExpress.Wpf.Core" Version="26.1.5" />
+    <PackageReference Include="DevExpress.Wpf.LayoutControl" Version="26.1.5" />
+    <PackageReference Include="DevExpress.Wpf.Map" Version="26.1.5" />
+    <PackageReference Include="DevExpress.Wpf.Printing" Version="26.1.5" />
+    <PackageReference Include="DevExpress.Wpf.Reporting" Version="26.1.5" />
+    <PackageReference Include="DevExpress.Wpf.Themes.All" Version="26.1.5" />
   </ItemGroup>
 </Project>
